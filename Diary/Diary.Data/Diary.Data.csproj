@@ -49,6 +49,8 @@
     <Compile Include="DiaryDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diary.Models\Diary.Models.csproj">
