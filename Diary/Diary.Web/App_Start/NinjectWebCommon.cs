@@ -1,3 +1,7 @@
+using System.Data.Entity;
+using Diary.Data;
+using Diary.Data.Repository;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Diary.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Diary.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +65,8 @@ namespace Diary.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<DbContext>().To<DiaryDbContext>();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
         }        
     }
 }
