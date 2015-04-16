@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Diary.Data.Migrations;
 using Diary.Models;
 
 namespace Diary.Data
@@ -7,7 +8,7 @@ namespace Diary.Data
    {
        public DiaryDbContext() : base("DiaryDbContext")
        {
-           
+          Database.SetInitializer(new MigrateDatabaseToLatestVersion<DiaryDbContext, Configuration>()); 
        }
 
        public IDbSet<Story> Stories { get; set; }
