@@ -6,7 +6,7 @@ using Diary.Web.Infrastructure;
 
 namespace Diary.Web.Models
 {
-    public class StoryInfo :IMapFrom<Story>
+    public class StoryInfo : IMapFrom<Story>
     {
         [Key]
         public int StoryId { get; set; }

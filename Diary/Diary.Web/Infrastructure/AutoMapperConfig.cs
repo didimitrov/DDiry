@@ -6,9 +6,9 @@ using AutoMapper;
 
 namespace Diary.Web.Infrastructure
 {
-    public static class AutoMapperConfig
+    public  class AutoMapperConfig
     {
-        public static  void Execute()
+        public void Execute()
         {
             var types = Assembly.GetExecutingAssembly().GetExportedTypes();
 
