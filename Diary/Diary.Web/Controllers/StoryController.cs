@@ -40,8 +40,8 @@ namespace Diary.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoryInfo st)
         {
-            string fileName = "";
-            string path = "";
+            var fileName = "";
+            var path = "";
             if (ModelState.IsValid)
             {
                 if (st.PostedFile.ContentLength > 0)
@@ -50,7 +50,7 @@ namespace Diary.Web.Controllers
                     path = System.IO.Path.Combine(Server.MapPath("~/Content/Pictures/"), fileName);
                     st.PostedFile.SaveAs(path);
                 }
-                Story storyEntity = new Story
+                var storyEntity = new Story
                 {
                     StoryText = st.StoryText,
                     StoryDate = st.StoryDate,

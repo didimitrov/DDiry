@@ -10,39 +10,74 @@
 
 </p>
 @*<p>
-    @{Html.RenderPartial("_Search");}
-</p>*@
+        @{Html.RenderPartial("_Search");}
+    </p>*@
 
 @foreach (var item in Model)
 {
-    //  <fieldset>
-    <div class="container border green">
-        <article><b>@Html.DisplayFor(modelItem => item.Title)</b></article>
-        <table class="container">
-            <tr>
-                <td class="detailPicture"><img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " /></td>
-                <td class="rate">
-                    <div>@Html.DisplayFor(modelItem => item.StoryDate)</div>
-                    @*<div>
-                        @Html.StarRate(item.Rate, 6)
+    <div id="firstDiv" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
+        </div>
+        <div id="firstBody" class="panel-body">
+            <div class="col-md-4">@*col-xs-6*@ 
+                <a href="#" class="thumbnail">
+                    @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                    <img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " />
+                </a>
+            </div>
+            <div class="row">
+                <div class=" col-md-12">
+                    <p></p>
+                    @for (int i = 0; i < item.Rate; i++)
+                    {
 
-                    </div>*@
-                </td>
-                <td class="text"> @Html.DisplayFor(modelItem => item.StoryText)</td>
-                <td class="delete">
-                    <a href="@Url.Action("Delete", "Story", new { id = item.StoryId })" id="adel">
-                        <img src="~/Content/Images/Delete.gif" />
-                    </a>
-                </td>
-            </tr>
-        </table>
+                        
+                                <img src="~/Content/Images/full_star.png" />
+                    }
+                    <br />
+                    <p></p>
+                    @Html.DisplayFor(modelItem => item.StoryDate) <br />
+                    <p></p>
+                    <hr />
+
+                    @Html.DisplayFor(modelItem => item.StoryText)  <br />
+                    <p></p>
+                </div>    
+            </div>
+
+        </div>
     </div>
-    <br />
-    // </fieldset>
-}
-@*</table>*@
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/LoadStars.js"></script>
+
+            //  <fieldset>
+                @*<div class="container border green">
+                    <article><b>@Html.DisplayFor(modelItem => item.Title)</b></article>
+                    <table class="container">
+                        <tr>
+                            <td class="detailPicture"><img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " /></td>
+                            <td class="rate">
+                                <div>@Html.DisplayFor(modelItem => item.StoryDate)</div>
+                                <div>
+                                        @Html.StarRate(item.Rate, 6)
+
+                                    </div>
+                            </td>
+                            <td class="text"> @Html.DisplayFor(modelItem => item.StoryText)</td>
+                            <td class="delete">
+                                <a href="@Url.Action("Delete", "Story", new { id = item.StoryId })" id="adel">
+                                    <img src="~/Content/Images/Delete.gif" />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />*@
+                //
+          //  </fieldset>
+            }
+            @*</table>*@
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+            <script src="~/Scripts/LoadStars.js"></script>
 
