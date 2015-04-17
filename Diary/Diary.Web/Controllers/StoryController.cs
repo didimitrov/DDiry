@@ -81,9 +81,9 @@ namespace Diary.Web.Controllers
             var allStories = _story.All().OrderBy(x => x.StoryId)
                   .Project()
                   .To<StoryInfo>();
-            var minID = _story.All()
+            var minId = _story.All()
                 .Min(x => x.StoryId);
-            ViewBag.MinStoryID = (int)minID;
+            ViewBag.MinStoryID = minId;
             return View(allStories);
         }
     }

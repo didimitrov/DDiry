@@ -22,19 +22,37 @@
             {
 
                 <div class="item" data-storyid='@(item.StoryId)'>
-                    <article><b>@Html.DisplayFor(modelItem => item.Title)</b></article>
-                    <table class="container">
-                        <tr>
-                            <td class=""><img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " /></td>
-                            <td class="">
-                                <div>@Html.DisplayFor(modelItem => item.StoryDate)</div>
-                                <div>
-                                    @Html.StarRate(item.Rate, 6)
-                                </div>
-                            </td>
-                            <td class="text"> @Html.DisplayFor(modelItem => item.StoryText)</td>
-                        </tr>
-                    </table>
+                    <div id="firstDiv" class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
+                        </div>
+                        <div id="firstBody" class="panel-body">
+                            <div class="col-md-4">
+                                @*col-xs-6*@
+                            <a href="#" class="thumbnail">
+                                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                                <img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " />
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-12">
+                                <p></p>
+                                @for (int i = 0; i < item.Rate; i++)
+                                {
+                                    <img src="~/Content/Images/full_star.png" />
+                                }
+                                <br />
+                                <p></p>
+                                @Html.DisplayFor(modelItem => item.StoryDate) <br />
+                                <p></p>
+                                <hr />
+
+                                @Html.DisplayFor(modelItem => item.StoryText)  <br />
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
 
 
