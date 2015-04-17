@@ -67,9 +67,7 @@ namespace Diary.Web.Controllers
         }
         public ActionResult Delete(int Id)
         {
-            var storyEntity = _story.All()
-                .Where(x => x.StoryId == Id)
-                .FirstOrDefault();
+            var storyEntity = _story.All().FirstOrDefault(x => x.StoryId == Id);
             var path = System.IO.Path.Combine(Server.MapPath("~/Content/Pictures/"), storyEntity.ImageUrl);
             System.IO.File.Delete(path);
             _story.Delete(storyEntity);

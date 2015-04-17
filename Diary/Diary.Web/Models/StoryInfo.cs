@@ -15,7 +15,8 @@ namespace Diary.Web.Models
         public string Title { get; set; }
         [Required(ErrorMessage="Моля,задаите дата")]
         [Display(Name="Дата")]
-        [DataType(DataType.DateTime)]
+        //[DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StoryDate { get; set; }
         [Range(0,6)]
         [Display(Name="Рейтинг на историята")]
