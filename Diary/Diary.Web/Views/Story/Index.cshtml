@@ -4,23 +4,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Истории</h2>
-<p>
+<h2>Истории</h2><hr />
+@*<p>
     @Html.ActionLink("Слайд", "Slide")    |  @Html.ActionLink("Добави история", "Create")  | @Html.ActionLink("За мен", "Index", "MySelf")
 
-</p>
+</p>*@
 @*<p>
         @{Html.RenderPartial("_Search");}
     </p>*@
-
+<div class="row ">
 @foreach (var item in Model)
 {
-    <div id="firstDiv" class="panel panel-default">
+    <div id="firstDiv" class="panel panel-default ">
         <div class="panel-heading">
-            <h3 class="panel-title"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
+            <h3 class="panel-title text-center"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
         </div>
         <div id="firstBody" class="panel-body">
-            <div class="col-md-4">@*col-xs-6*@ 
+            <div class="col-md-4">
                 <a href="#" class="thumbnail">
                     @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
                     <img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " />
@@ -72,6 +72,7 @@
                 //
           //  </fieldset>
             }
+    </div>
             @*</table>*@
             <script src="~/Scripts/jquery-1.10.2.min.js"></script>
             <script src="~/Scripts/jquery.validate.min.js"></script>

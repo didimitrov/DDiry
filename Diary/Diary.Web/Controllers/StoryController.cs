@@ -15,6 +15,7 @@ namespace Diary.Web.Controllers
         {
             this._story = story;
         }
+
         // GET: Story 
         public ActionResult Index()
         {
@@ -23,6 +24,7 @@ namespace Diary.Web.Controllers
                 .To<StoryInfo>();
             return View(allStories);
         }
+
         //[HttpPost]
         //public ActionResult Index(string txtSearch)
         //{
@@ -32,10 +34,12 @@ namespace Diary.Web.Controllers
         //        .To<StoryInfo>();
         //    return View(allStories);
         //}
+
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoryInfo st)
@@ -60,11 +64,12 @@ namespace Diary.Web.Controllers
                 };
                 this._story.Add(storyEntity);
                 this._story.SaveChanges();
-                //Връщам към списъка
+               
                 return RedirectToAction("Index");
             }
             return View(st);
         }
+
         public ActionResult Delete(int Id)
         {
             var storyEntity = _story.All().FirstOrDefault(x => x.StoryId == Id);
@@ -73,7 +78,7 @@ namespace Diary.Web.Controllers
             _story.Delete(storyEntity);
             _story.SaveChanges();
             return RedirectToAction("Index");
-            // return View();
+            ;
         }
 
         public ActionResult Slide()
