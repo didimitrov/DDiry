@@ -1,12 +1,9 @@
-﻿@model IEnumerable<Diary.Web.Models.StoryInfo>
+﻿@model IEnumerable<Diary.Web.Models.StoryViewModel>
 @using Diary.Web.CustomHtmlHelpers
 @{
     ViewBag.Title = "Index";
 }
 <h2>Преглед на истории</h2><hr />
-@*<p>
-    @Html.ActionLink("Списък със истории", "Index") |@Html.ActionLink("Добави история", "Create")  | @Html.ActionLink("За мен", "Index", "MySelf")
-</p>*@
 
 <input type="hidden" id="storyMIN" value="@ViewBag.MinStoryID" />
 <div class="container">
@@ -20,7 +17,6 @@
         <div class="carousel-inner" role="listbox">
             @foreach (var item in Model)
             {
-
                 <div class="item" data-storyid='@(item.StoryId)'>
                     <div id="firstDiv" class="panel panel-default">
                         <div class="panel-heading">
@@ -54,9 +50,6 @@
                     </div>
                 </div>
                 </div>
-
-
-                // </fieldset>
             }
         </div>
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -69,7 +62,7 @@
         </a>
     </div>
 </div>
-@*</table>*@
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -6,7 +6,7 @@ using Diary.Web.Infrastructure;
 
 namespace Diary.Web.Models
 {
-    public class StoryInfo : IMapFrom<Story>
+    public class StoryViewModel : IMapFrom<Story>
     {
         //public StoryInfo()
         //{
@@ -18,7 +18,7 @@ namespace Diary.Web.Models
         [Required(ErrorMessage="Моля, задайте заглавие")]
         [Display(Name="Заглавие")]
         public string Title { get; set; }
-        [Required(ErrorMessage="Моля,задаите дата")]
+        [Required(ErrorMessage = "Моля, задайте дата")]
         [Display(Name="Дата")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
@@ -29,7 +29,7 @@ namespace Diary.Web.Models
         [Required(ErrorMessage = "Трябва да се попълни текст към историята")]
         [Display(Name="Текст")]
         public string StoryText { get; set; }
-        [Display(Name = "Файл за снимка на събитието")]
+        [Display(Name = "снимка на събитието")]
         public HttpPostedFileBase  PostedFile { get; set; }
         public string ImageUrl { get; set; }
         public string Search { get; set; }

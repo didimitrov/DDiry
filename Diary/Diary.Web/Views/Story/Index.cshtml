@@ -1,79 +1,78 @@
-﻿@model IEnumerable<Diary.Web.Models.StoryInfo>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Diary.Web.Models.StoryViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-@{
-    ViewBag.Title = "Index";
-}
+<div class="container">
+    <h2 class="text-center">Истории</h2><hr />
 
-<h2>Истории</h2><hr />
-@*<p>
-    @Html.ActionLink("Слайд", "Slide")    |  @Html.ActionLink("Добави история", "Create")  | @Html.ActionLink("За мен", "Index", "MySelf")
-
-</p>*@
-@*<p>
-        @{Html.RenderPartial("_Search");}
-    </p>*@
-<div class="row ">
-@foreach (var item in Model)
-{
-    <div id="firstDiv" class="panel panel-default ">
-        <div class="panel-heading">
-            <h3 class="panel-title text-center"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
-        </div>
-        <div id="firstBody" class="panel-body">
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
-                    <img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " />
-                </a>
-            </div>
-            <div class="row">
-                <div class=" col-md-12">
-                    <p></p>
-                    @for (int i = 0; i < item.Rate; i++)
-                    {
-                        <img src="~/Content/Images/full_star.png" />
-                    }
-                    <br />
-                    <p></p>
-                    @Html.DisplayFor(modelItem => item.StoryDate) <br />
-                    <p></p>
-                    <hr />
-
-                    @Html.DisplayFor(modelItem => item.StoryText)  <br />
-                    <p></p>
-                </div>    
-            </div>
-            </div>
-    </div>
-
-            //  <fieldset>
-                @*<div class="container border green">
-                    <article><b>@Html.DisplayFor(modelItem => item.Title)</b></article>
-                    <table class="container">
-                        <tr>
-                            <td class="detailPicture"><img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " /></td>
-                            <td class="rate">
-                                <div>@Html.DisplayFor(modelItem => item.StoryDate)</div>
-                                <div>
-                                        @Html.StarRate(item.Rate, 6)
-
-                                    </div>
-                            </td>
-                            <td class="text"> @Html.DisplayFor(modelItem => item.StoryText)</td>
-                            <td class="delete">
-                                <a href="@Url.Action("Delete", "Story", new { id = item.StoryId })" id="adel">
-                                    <img src="~/Content/Images/Delete.gif" />
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
+    <div class="row">
+        <div class="col col-md-9 col-md-offset-3">
+            @using (Html.BeginForm("Index", "Story", FormMethod.Post))
+            {
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true" id="glass"></span>Търси</button>
+                        </span>
+                        <input type="text" name="searchString" class="form-control" placeholder="име на история..">
+                    </div>
                 </div>
-                <br />*@
-                //
-          //  </fieldset>
             }
+
+            <span class="label label-default">Сортирай по:</span>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">@Html.ActionLink("Дата", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</button>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Заглавие", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</button>
+            </div>
+        </div>
+    </div><br />
+
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div id="firstDiv" class="panel panel-default col col-md-10 col-md-offset-1 ">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center"><b>@Html.DisplayFor(modelItem => item.Title)</b></h3>
+                </div>
+                <div id="firstBody" class="panel-body">
+                    <div class="col-md-4">
+                        <a href="#" class="thumbnail">
+                            @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                            <img class="ProfilPicture" src="~/Content/Pictures/@item.ImageUrl " />
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class=" col-md-12">
+                            <p></p>
+                            @for (int i = 0; i < item.Rate; i++)
+                            {
+                                <img src="~/Content/Images/full_star.png" />
+                            }
+                            <br />
+                            <p></p>
+                            @Html.DisplayFor(modelItem => item.StoryDate) <br />
+                            <p></p>
+                            <hr />
+
+                            @Html.DisplayFor(modelItem => item.StoryText)  <br />
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
     </div>
-            @*</table>*@
+
+    <div class="text-center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+</div>
             <script src="~/Scripts/jquery-1.10.2.min.js"></script>
             <script src="~/Scripts/jquery.validate.min.js"></script>
             <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

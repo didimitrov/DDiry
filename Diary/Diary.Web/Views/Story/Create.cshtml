@@ -1,5 +1,5 @@
 ﻿@using Diary.Web.CustomHtmlHelpers
-@model Diary.Web.Models.StoryInfo
+@model Diary.Web.Models.StoryViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -45,8 +45,6 @@
         </div>
         
 
-
-            
 
             <div class="form-group">
                 @Html.LabelFor(model => model.StoryText, htmlAttributes: new { @class = "control-label col-md-2" })
